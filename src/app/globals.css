@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;600&display=swap");
+
+:root {
+  --primary:       #7C3AED;
+  --primary-light: #A78BFA;
+  --accent:        #EC4899;
+  --bg:            #0F0A1E;
+  --surface:       #1A1030;
+  --surface2:      #241840;
+  --border:        #3D2B6B;
+  --text:          #F0EBF8;
+  --muted:         #9B8AC4;
+  --crisis:        #FF4D6A;
+  --safe:          #34D399;
+  --scroll-duration: 30s;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.chat-scroll {
+  scroll-behavior: smooth;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+/* Story wall scroll animations */
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scrollDown {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-scroll-up {
+  animation: scrollUp var(--scroll-duration, 30s) linear infinite;
+}
+
+.animate-scroll-up-reverse {
+  animation: scrollDown var(--scroll-duration, 30s) linear infinite;
+}
+
+.story-wall-paused .animate-scroll-up,
+.story-wall-paused .animate-scroll-up-reverse {
+  animation-play-state: paused;
+}
+
+/* Modal entrance animation */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-in {
+  animation: modalIn 0.2s ease-out forwards;
+}
+
+/* Gradient utilities */
+.gradient-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
