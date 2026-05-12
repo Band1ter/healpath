@@ -261,6 +261,33 @@ export const resources: Resource[] = [
     languages: ["English", "Spanish", "Many languages available"],
   },
 
+  // ─── NATIONAL LEGAL / ONLINE RESOURCES ─────────────────────────────────
+  {
+    id: "womenslaw",
+    name: "WomensLaw.org — Legal Information",
+    description:
+      "Plain-language legal information for survivors — no phone call required. Browse your rights by state: restraining orders, divorce, custody, immigration protections (VAWA, U-visa), and more. Available 24/7, privately, at your own pace. Also offers a confidential email hotline for legal questions.",
+    category: "legal",
+    location: "national",
+    website: "https://www.womenslaw.org/laws/general",
+    hours: "Website 24/7 · Email hotline Mon–Fri",
+    cost: "Free",
+    languages: ["English", "Spanish"],
+  },
+  {
+    id: "thehotline",
+    name: "National Domestic Violence Hotline — Call, Text, or Chat",
+    description:
+      "You don't have to call — the National DV Hotline offers live online chat at thehotline.org for survivors who can't speak safely. Confidential, 24/7, available in 200+ languages. Staffed by trained advocates who will listen without judgment and help you explore your options.",
+    category: "hotline",
+    location: "national",
+    phone: "1-800-799-7233",
+    website: "https://www.thehotline.org",
+    hours: "24/7 — call, text, or chat online",
+    cost: "Free",
+    languages: ["English", "Spanish", "200+ languages via interpreter"],
+  },
+
   // ─── NJ HOTLINES & COUNTY RESOURCES ────────────────────────────────────
   {
     id: "nj-dv-hotline",
@@ -314,6 +341,44 @@ export const resources: Resource[] = [
   },
 
   // ─── NJ LEGAL ───────────────────────────────────────────────────────────
+  {
+    id: "women-aware",
+    name: "Women Aware",
+    description:
+      "Middlesex County's primary DV shelter and service provider. Offers 24/7 crisis hotline, emergency shelter, counseling, legal advocacy, and economic empowerment programs. Serves survivors of all genders. Confidential location.",
+    category: "shelter",
+    location: "nj",
+    phone: "(732) 249-4900",
+    website: "http://womenaware.net",
+    hours: "24/7 hotline",
+    cost: "Free",
+    languages: ["English", "Spanish"],
+  },
+  {
+    id: "manavi",
+    name: "Manavi — South Asian Survivor Services",
+    description:
+      "New Jersey's only organization exclusively serving South Asian survivors of gender-based violence. Provides culturally sensitive crisis intervention, safety planning, legal advocacy, counseling, and economic support. Understands the unique cultural, immigration, and family dynamics South Asian survivors face.",
+    category: "hotline",
+    location: "nj",
+    phone: "(732) 435-1414",
+    website: "https://www.manavi.org",
+    hours: "Mon–Fri, 9 AM–5 PM; crisis line available",
+    cost: "Free",
+    languages: ["English", "Hindi", "Urdu", "Bengali", "Gujarati", "Punjabi", "Tamil"],
+  },
+  {
+    id: "njcedv-teen",
+    name: "NJCEDV — Teen Dating Violence Resources",
+    description:
+      "Teenagers experience dating violence too — and it is just as real. NJCEDV's teen-focused resources help young people recognize warning signs of an unhealthy relationship, understand their rights, and find help. You don't have to be an adult to deserve safety and support.",
+    category: "hotline",
+    location: "nj",
+    website: "https://njcedv.org/teen-dating-violence/",
+    hours: "Website available 24/7",
+    cost: "Free",
+    teenFocused: true,
+  },
   {
     id: "njcedv",
     name: "NJ Coalition to End Domestic Violence (NJCEDV)",

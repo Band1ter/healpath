@@ -128,20 +128,42 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Privacy note + quick exit */}
-      <section className="px-4 py-12 text-center bg-[#0F0A1E]">
+      {/* Many ways to get help */}
+      <section className="px-4 py-12 bg-[#0F0A1E]">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-center text-xs font-medium tracking-widest text-[#9B8AC4] uppercase mb-6">
+            There is more than one way to reach out
+          </p>
+          <div className="grid sm:grid-cols-3 gap-3">
+            {[
+              { icon: "📞", label: "Call a hotline", sub: "Talk to a real person, free & confidential", href: "tel:18007997233" },
+              { icon: "💬", label: "Chat online", sub: "No phone needed — text or chat at thehotline.org", href: "https://www.thehotline.org" },
+              { icon: "⚖️", label: "Read your rights", sub: "Browse legal info privately at womenslaw.org", href: "https://www.womenslaw.org" },
+            ].map(({ icon, label, sub, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="bg-[#1A1030] border border-[#3D2B6B] hover:border-[#7C3AED] rounded-2xl p-5 text-center transition-colors group"
+              >
+                <div className="text-2xl mb-2">{icon}</div>
+                <p className="text-[#F0EBF8] text-sm font-medium mb-1">{label}</p>
+                <p className="text-[#9B8AC4] text-xs leading-relaxed">{sub}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Privacy note */}
+      <section className="px-4 py-10 text-center bg-[#0F0A1E]">
         <div className="flex items-center justify-center gap-2 mb-4">
           <span className="w-2 h-2 rounded-full bg-[#34D399]" />
           <p className="text-sm text-[#9B8AC4]">
             Completely anonymous — no account, no tracking, no identity stored.
           </p>
         </div>
-        <a
-          href="https://www.google.com"
-          className="inline-block text-xs text-[#9B8AC4] border border-[#3D2B6B] hover:border-[#7C3AED] hover:text-[#A78BFA] px-4 py-2 rounded-full transition-colors"
-        >
-          Leave this page quickly ↗
-        </a>
       </section>
     </div>
   );

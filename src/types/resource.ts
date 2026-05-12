@@ -16,4 +16,5 @@ export interface Resource {
   languages?: string[];
   lgbtqFriendly?: boolean;
   disabilityAccessible?: boolean;
+  teenFocused?: boolean;
 }

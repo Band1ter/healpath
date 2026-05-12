@@ -76,6 +76,11 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
 
       <div className="flex items-center justify-between flex-wrap gap-2 pt-1 border-t border-[#3D2B6B]">
         <div className="flex gap-2 flex-wrap">
+          {resource.teenFocused && (
+            <span className="text-xs bg-[#2e1a28] text-[#EC4899] border border-[#EC4899]/30 px-2 py-0.5 rounded-full">
+              Teen Resources
+            </span>
+          )}
           {resource.lgbtqFriendly && (
             <span className="text-xs bg-[#241840] text-[#A78BFA] border border-[#3D2B6B] px-2 py-0.5 rounded-full">
               LGBTQ+ Friendly
