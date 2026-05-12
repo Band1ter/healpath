@@ -1,5 +1,4 @@
 import { Shelter } from "@/types/shelter";
-import { crypto } from "crypto";
 
 // In-memory storage - persists during server session
 let shelters: Shelter[] = [
