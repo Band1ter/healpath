@@ -65,7 +65,7 @@ function StoryColumn({
             key={`${story.id}-${i}`}
             onClick={() => onSelect(story)}
             className={clsx(
-              "text-left rounded-2xl border p-4 transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+              "text-left rounded-2xl border p-4 card-lift cursor-pointer active:scale-[0.98]",
               CATEGORY_COLORS[story.category]
             )}
           >

@@ -35,7 +35,7 @@ export default function ResourceFilters({ filters, onFilterChange }: ResourceFil
             key={value}
             onClick={() => onFilterChange({ ...filters, category: value })}
             className={clsx(
-              "px-4 py-1.5 rounded-full text-sm font-medium border transition-colors",
+              "px-4 py-1.5 rounded-full text-sm font-medium border transition-[border-color,color,background] duration-150",
               filters.category === value
                 ? "text-white border-[#7C3AED]"
                 : "text-[#9B8AC4] border-[#3D2B6B] hover:border-[#7C3AED] hover:text-[#A78BFA]"
@@ -56,7 +56,7 @@ export default function ResourceFilters({ filters, onFilterChange }: ResourceFil
             key={value}
             onClick={() => onFilterChange({ ...filters, location: value })}
             className={clsx(
-              "px-4 py-1.5 rounded-full text-sm font-medium border transition-colors",
+              "px-4 py-1.5 rounded-full text-sm font-medium border transition-[border-color,color,background] duration-150",
               filters.location === value
                 ? "bg-[#241840] text-[#34D399] border-[#34D399]"
                 : "text-[#9B8AC4] border-[#3D2B6B] hover:border-[#34D399] hover:text-[#34D399]"

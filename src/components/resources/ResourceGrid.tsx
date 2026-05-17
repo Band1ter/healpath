@@ -8,7 +8,7 @@ interface ResourceGridProps {
 export default function ResourceGrid({ resources }: ResourceGridProps) {
   if (resources.length === 0) {
     return (
-      <div className="text-center py-16 text-gray-400">
+      <div className="text-center py-16 text-[#9B8AC4]">
         <p>No resources match your filters. Try broadening your search.</p>
       </div>
     );

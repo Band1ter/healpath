@@ -24,7 +24,7 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
   const cat = CATEGORY_COLORS[resource.category];
 
   return (
-    <div className="bg-[#1A1030] rounded-2xl border border-[#3D2B6B] p-5 hover:border-[#7C3AED] transition-colors flex flex-col gap-3">
+    <div className="bg-[#1A1030] rounded-2xl border border-[#3D2B6B] p-5 hover:border-[#7C3AED] card-lift flex flex-col gap-3">
       <div className="flex items-start justify-between gap-2 flex-wrap">
         <h3 className="font-heading font-semibold text-[#F0EBF8] text-base leading-snug">
           {resource.name}

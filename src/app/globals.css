@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;600&display=swap");
 
 :root {
+  /* ── Color tokens ──────────────────────────────── */
   --primary:       #7C3AED;
   --primary-light: #A78BFA;
   --accent:        #EC4899;
@@ -16,6 +17,23 @@
   --muted:         #9B8AC4;
   --crisis:        #FF4D6A;
   --safe:          #34D399;
+
+  /* ── Easing curves ─────────────────────────────── */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Transition shorthands ─────────────────────── */
+  --transition-fast:   150ms var(--ease-out);
+  --transition-base:   200ms var(--ease-out);
+  --transition-slow:   300ms var(--ease-out);
+
+  /* ── Border radius scale ───────────────────────── */
+  /* sm = 8px  |  md = 12px  |  lg = 16px */
+
+  /* ── Spacing scale (multiples of 4px) ─────────── */
+
+  /* ── Story wall ────────────────────────────────── */
   --scroll-duration: 30s;
 }
 
@@ -71,7 +89,33 @@ html, body {
 }
 
 .animate-modal-in {
-  animation: modalIn 0.2s ease-out forwards;
+  animation: modalIn 0.2s var(--ease-out) forwards;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface) 25%,
+    var(--surface2) 50%,
+    var(--surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s var(--ease-in-out) infinite;
+  border-radius: 8px;
+}
+
+/* Card lift — use on interactive cards instead of glow */
+.card-lift {
+  transition: transform var(--transition-base), border-color var(--transition-base);
+}
+.card-lift:hover {
+  transform: translateY(-3px);
 }
 
 /* Gradient utilities */
