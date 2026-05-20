@@ -165,19 +165,19 @@ export default function ChatPage() {
             </p>
             <div className="flex flex-col gap-1.5">
               <a href="tel:18007997233" className="text-xs text-[#A78BFA] hover:text-white hover:underline transition-colors">
-                📞 DV Hotline: 1-800-799-7233
+                DV Hotline: 1-800-799-7233
               </a>
               <a href="https://www.thehotline.org" target="_blank" rel="noopener noreferrer" className="text-xs text-[#A78BFA] hover:text-white hover:underline transition-colors">
-                💬 Chat online: thehotline.org
+                Chat online: thehotline.org
               </a>
               <a href="sms:741741" className="text-xs text-[#A78BFA] hover:text-white hover:underline transition-colors">
-                📱 Text HOME → 741741
+                Text HOME to 741741
               </a>
               <a href="https://www.womenslaw.org" target="_blank" rel="noopener noreferrer" className="text-xs text-[#A78BFA] hover:text-white hover:underline transition-colors">
-                ⚖️ Legal info: womenslaw.org
+                Legal info: womenslaw.org
               </a>
               <a href="tel:988" className="text-xs text-[#A78BFA] hover:text-white hover:underline transition-colors">
-                🆘 Crisis Line: 988
+                Crisis Line: 988
               </a>
             </div>
           </div>
