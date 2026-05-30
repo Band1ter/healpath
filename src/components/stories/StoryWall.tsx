@@ -168,7 +168,7 @@ export default function StoryWall({ stories }: StoryWallProps) {
 
   if (stories.length === 0) {
     return (
-      <div className="text-center py-20 text-[#9B8AC4]">
+      <div className="text-center py-20 text-[#94a3b8]">
         <p className="text-lg mb-1">No stories yet.</p>
         <p className="text-sm">Be the first to share above.</p>
       </div>
@@ -188,8 +188,8 @@ export default function StoryWall({ stories }: StoryWallProps) {
     <>
       <div className="relative overflow-hidden" style={{ height: "520px" }}>
         {/* Fade masks top and bottom */}
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0F0A1E] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0F0A1E] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0b1326] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0b1326] to-transparent z-10 pointer-events-none" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 h-full px-1">
           <StoryColumn stories={pad(col1, stories)} duration={28} reverse={false} onSelect={setSelected} />

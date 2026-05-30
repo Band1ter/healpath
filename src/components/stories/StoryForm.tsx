@@ -68,7 +68,7 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
           <label htmlFor="story-title" className="block text-sm font-medium text-[#94a3b8] mb-1">
-            Title <span className="text-[#3D2B6B] font-normal">(optional)</span>
+            Title <span className="text-[#2a3555] font-normal">(optional)</span>
           </label>
           <input
             id="story-title"
@@ -106,7 +106,7 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
             id="story-category"
             value={category}
             onChange={(e) => setCategory(e.target.value as StoryCategory)}
-            className="w-full rounded-xl border border-[#2a3555] bg-[#1c2640] px-4 py-2.5 text-sm text-[#F0EBF8] focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+            className="w-full rounded-xl border border-[#2a3555] bg-[#1c2640] px-4 py-2.5 text-sm text-[#f1f5f9] focus:outline-none focus:ring-2 focus:ring-[#9f7aea]"
           >
             <option value="domestic-violence">Domestic Violence</option>
             <option value="sexual-assault">Sexual Assault</option>

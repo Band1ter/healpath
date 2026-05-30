@@ -35,7 +35,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
   }
 
   return (
-    <div className="border-t border-[#3D2B6B] bg-[#1A1030] px-4 py-3">
+    <div className="border-t border-[#2a3555] bg-[#131b2e] px-4 py-3">
       <div className="flex items-end gap-2 max-w-3xl mx-auto">
         <textarea
           ref={textareaRef}
@@ -46,13 +46,13 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
           disabled={disabled}
           rows={1}
           placeholder="Type what's on your mind..."
-          className="flex-1 resize-none rounded-2xl border border-[#3D2B6B] bg-[#241840] px-4 py-3 text-sm text-[#F0EBF8] placeholder-[#9B8AC4] focus:outline-none focus:ring-2 focus:ring-[#7C3AED] disabled:opacity-50 leading-relaxed"
+          className="flex-1 resize-none rounded-2xl border border-[#2a3555] bg-[#1c2640] px-4 py-3 text-sm text-[#f1f5f9] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#9f7aea] disabled:opacity-50 leading-relaxed"
         />
         <button
           onClick={handleSend}
           disabled={disabled || !text.trim()}
-          className="flex-shrink-0 text-white rounded-full w-10 h-10 flex items-center justify-center transition-opacity hover:opacity-80 disabled:opacity-30"
-          style={{ background: "linear-gradient(135deg, #7C3AED, #EC4899)" }}
+          className="flex-shrink-0 text-white rounded-xl w-10 h-10 flex items-center justify-center transition-opacity hover:opacity-80 disabled:opacity-30"
+          style={{ background: "linear-gradient(135deg, #9f7aea, #818cf8)" }}
           aria-label="Send message"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 rotate-90">
@@ -60,7 +60,7 @@ export default function ChatInput({ onSend, disabled }: ChatInputProps) {
           </svg>
         </button>
       </div>
-      <p className="text-center text-xs text-[#9B8AC4] mt-2">
+      <p className="text-center text-xs text-[#94a3b8] mt-2">
         Press Enter to send · Shift+Enter for new line
       </p>
     </div>
