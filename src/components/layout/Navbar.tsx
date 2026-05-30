@@ -56,11 +56,11 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-[#1A1030] border-b border-[#3D2B6B] sticky top-8 z-40">
+    <nav className="bg-[#131b2e]/80 backdrop-blur-md border-b border-[#2a3555] sticky top-8 z-40">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link
           href="/"
-          className="font-heading text-xl font-semibold text-[#A78BFA] hover:text-white transition-colors"
+          className="font-heading text-xl font-semibold text-[#c4b5fd] hover:text-white transition-colors duration-150"
         >
           HealPath
         </Link>
@@ -70,10 +70,10 @@ export default function Navbar() {
               <Link
                 href={href}
                 className={clsx(
-                  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors",
+                  "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-medium transition-[background,color] duration-150",
                   pathname === href
-                    ? "bg-[#3D2B6B] text-white"
-                    : "text-[#9B8AC4] hover:bg-[#241840] hover:text-white"
+                    ? "bg-[#9f7aea]/20 text-[#c4b5fd]"
+                    : "text-[#94a3b8] hover:bg-[#1c2640] hover:text-[#f1f5f9]"
                 )}
               >
                 {icon}

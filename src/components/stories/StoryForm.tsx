@@ -51,11 +51,11 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
   }
 
   return (
-    <div className="bg-[#1A1030] rounded-2xl border border-[#3D2B6B] p-6 mb-8">
-      <h2 className="font-heading font-semibold text-[#F0EBF8] text-lg mb-1">
+    <div className="bg-[#131b2e] rounded-2xl border border-[#2a3555] p-6 mb-8">
+      <h2 className="font-heading font-semibold text-[#f1f5f9] text-lg mb-1">
         Share your story
       </h2>
-      <p className="text-sm text-[#9B8AC4] mb-5">
+      <p className="text-sm text-[#94a3b8] mb-5">
         Anonymous. No name, no account, no tracking.
       </p>
 
@@ -67,7 +67,7 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div>
-          <label htmlFor="story-title" className="block text-sm font-medium text-[#9B8AC4] mb-1">
+          <label htmlFor="story-title" className="block text-sm font-medium text-[#94a3b8] mb-1">
             Title <span className="text-[#3D2B6B] font-normal">(optional)</span>
           </label>
           <input
@@ -77,12 +77,12 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
             onChange={(e) => setTitle(e.target.value)}
             maxLength={120}
             placeholder="Give your story a title..."
-            className="w-full rounded-xl border border-[#3D2B6B] bg-[#241840] px-4 py-2.5 text-sm text-[#F0EBF8] placeholder-[#9B8AC4] focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+            className="w-full rounded-xl border border-[#2a3555] bg-[#1c2640] px-4 py-2.5 text-sm text-[#f1f5f9] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#9f7aea]"
           />
         </div>
 
         <div>
-          <label htmlFor="story-body" className="block text-sm font-medium text-[#9B8AC4] mb-1">
+          <label htmlFor="story-body" className="block text-sm font-medium text-[#94a3b8] mb-1">
             Your story <span className="text-[#FF4D6A]">*</span>
           </label>
           <textarea
@@ -93,20 +93,20 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
             rows={6}
             maxLength={5000}
             placeholder="Share what you feel comfortable sharing..."
-            className="w-full rounded-xl border border-[#3D2B6B] bg-[#241840] px-4 py-3 text-sm text-[#F0EBF8] placeholder-[#9B8AC4] focus:outline-none focus:ring-2 focus:ring-[#7C3AED] resize-none"
+            className="w-full rounded-xl border border-[#2a3555] bg-[#1c2640] px-4 py-3 text-sm text-[#f1f5f9] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#9f7aea] resize-none"
           />
-          <p className="text-xs text-[#9B8AC4] mt-1 text-right">{body.length}/5000</p>
+          <p className="text-xs text-[#94a3b8] mt-1 text-right">{body.length}/5000</p>
         </div>
 
         <div>
-          <label htmlFor="story-category" className="block text-sm font-medium text-[#9B8AC4] mb-1">
+          <label htmlFor="story-category" className="block text-sm font-medium text-[#94a3b8] mb-1">
             Category
           </label>
           <select
             id="story-category"
             value={category}
             onChange={(e) => setCategory(e.target.value as StoryCategory)}
-            className="w-full rounded-xl border border-[#3D2B6B] bg-[#241840] px-4 py-2.5 text-sm text-[#F0EBF8] focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
+            className="w-full rounded-xl border border-[#2a3555] bg-[#1c2640] px-4 py-2.5 text-sm text-[#F0EBF8] focus:outline-none focus:ring-2 focus:ring-[#7C3AED]"
           >
             <option value="domestic-violence">Domestic Violence</option>
             <option value="sexual-assault">Sexual Assault</option>
@@ -125,7 +125,7 @@ export default function StoryForm({ onStoryAdded }: StoryFormProps) {
           type="submit"
           disabled={isSubmitting}
           className="self-start flex items-center gap-2 text-white font-medium px-6 py-2.5 rounded-full text-sm transition-opacity hover:opacity-80 disabled:opacity-50"
-          style={{ background: "linear-gradient(135deg, #7C3AED, #EC4899)" }}
+          style={{ background: "linear-gradient(135deg, #9f7aea, #818cf8)" }}
         >
           {isSubmitting && (
             <svg className="animate-spin w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

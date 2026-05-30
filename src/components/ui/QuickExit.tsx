@@ -24,7 +24,8 @@ export default function QuickExit() {
   return (
     <a
       href="https://www.google.com"
-      className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 text-xs font-medium text-[#9B8AC4] bg-[#1A1030] border border-[#3D2B6B] hover:border-[#FF4D6A] hover:text-[#FF4D6A] px-3 py-2 rounded-full transition-colors shadow-lg"
+      className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 text-xs font-semibold text-white px-4 py-2.5 rounded-2xl shadow-lg transition-opacity duration-150 hover:opacity-90"
+      style={{ background: "linear-gradient(135deg, #9f7aea, #818cf8)", boxShadow: "0 0 20px rgba(159,122,234,0.35)" }}
       title="Leave this page quickly (or press Escape 3 times)"
     >
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3">

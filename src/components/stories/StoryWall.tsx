@@ -5,17 +5,17 @@ import { Story } from "@/types/story";
 import { clsx } from "clsx";
 
 const CATEGORY_COLORS: Record<Story["category"], string> = {
-  "domestic-violence": "bg-[#1A1030] border-[#3D2B6B] hover:border-[#7C3AED]",
-  "sexual-assault":    "bg-[#1A1030] border-[#3D2B6B] hover:border-[#EC4899]",
-  both:                "bg-[#1A1030] border-[#3D2B6B] hover:border-[#34D399]",
-  other:               "bg-[#1A1030] border-[#3D2B6B] hover:border-[#9B8AC4]",
+  "domestic-violence": "bg-[#131b2e] border-[#2a3555] hover:border-[#9f7aea]",
+  "sexual-assault":    "bg-[#131b2e] border-[#2a3555] hover:border-[#818cf8]",
+  both:                "bg-[#131b2e] border-[#2a3555] hover:border-[#34D399]",
+  other:               "bg-[#131b2e] border-[#2a3555] hover:border-[#94a3b8]",
 };
 
 const CATEGORY_BADGE: Record<Story["category"], { bg: string; color: string }> = {
-  "domestic-violence": { bg: "#241840", color: "#A78BFA" },
-  "sexual-assault":    { bg: "#2e1a28", color: "#EC4899" },
-  both:                { bg: "#1a2e1a", color: "#34D399" },
-  other:               { bg: "#241830", color: "#9B8AC4" },
+  "domestic-violence": { bg: "#1c2444", color: "#c4b5fd" },
+  "sexual-assault":    { bg: "#1a1a30", color: "#818cf8" },
+  both:                { bg: "#0f1e18", color: "#34D399" },
+  other:               { bg: "#1c2640", color: "#94a3b8" },
 };
 
 const CATEGORY_LABELS: Record<Story["category"], string> = {
@@ -70,11 +70,11 @@ function StoryColumn({
             )}
           >
             {story.title && (
-              <p className="font-heading font-semibold text-[#F0EBF8] text-sm mb-1 line-clamp-1">
+              <p className="font-heading font-semibold text-[#f1f5f9] text-sm mb-1 line-clamp-1">
                 {story.title}
               </p>
             )}
-            <p className="text-[#9B8AC4] text-xs leading-relaxed line-clamp-4">
+            <p className="text-[#94a3b8] text-xs leading-relaxed line-clamp-4">
               {story.body}
             </p>
             <div className="mt-2 flex items-center justify-between">
@@ -84,7 +84,7 @@ function StoryColumn({
               >
                 {CATEGORY_LABELS[story.category]}
               </span>
-              <span className="text-xs text-[#9B8AC4]">{timeAgo(story.timestamp)}</span>
+              <span className="text-xs text-[#94a3b8]">{timeAgo(story.timestamp)}</span>
             </div>
           </button>
         ))}
@@ -120,10 +120,10 @@ function StoryModal({
       className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
       onClick={handleBackdrop}
     >
-      <div className="bg-[#1A1030] border border-[#3D2B6B] rounded-3xl shadow-2xl max-w-lg w-full p-7 relative animate-modal-in">
+      <div className="bg-[#131b2e] border border-[#2a3555] rounded-2xl shadow-2xl max-w-lg w-full p-7 relative animate-modal-in" style={{ backdropFilter: "blur(12px)" }}>
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#9B8AC4] hover:text-[#F0EBF8] transition-colors"
+          className="absolute top-4 right-4 text-[#94a3b8] hover:text-[#f1f5f9] transition-colors duration-150"
           aria-label="Close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -138,20 +138,20 @@ function StoryModal({
           >
             {CATEGORY_LABELS[story.category]}
           </span>
-          <span className="text-xs text-[#9B8AC4]">{timeAgo(story.timestamp)}</span>
+          <span className="text-xs text-[#94a3b8]">{timeAgo(story.timestamp)}</span>
         </div>
 
         {story.title && (
-          <h2 className="font-heading font-semibold text-[#F0EBF8] text-xl mb-3">
+          <h2 className="font-heading font-semibold text-[#f1f5f9] text-xl mb-3">
             {story.title}
           </h2>
         )}
 
-        <p className="text-[#9B8AC4] leading-relaxed whitespace-pre-wrap text-sm">
+        <p className="text-[#94a3b8] leading-relaxed whitespace-pre-wrap text-sm">
           {story.body}
         </p>
 
-        <p className="mt-6 text-xs text-[#9B8AC4] italic text-center">
+        <p className="mt-6 text-xs text-[#94a3b8] italic text-center">
           Shared anonymously · This community holds you.
         </p>
       </div>

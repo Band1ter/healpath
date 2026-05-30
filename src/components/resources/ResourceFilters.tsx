@@ -35,14 +35,14 @@ export default function ResourceFilters({ filters, onFilterChange }: ResourceFil
             key={value}
             onClick={() => onFilterChange({ ...filters, category: value })}
             className={clsx(
-              "px-4 py-1.5 rounded-full text-sm font-medium border transition-[border-color,color,background] duration-150",
+              "px-4 py-1.5 rounded-xl text-sm font-medium border transition-[border-color,color,background] duration-150",
               filters.category === value
-                ? "text-white border-[#7C3AED]"
-                : "text-[#9B8AC4] border-[#3D2B6B] hover:border-[#7C3AED] hover:text-[#A78BFA]"
+                ? "text-white border-[#9f7aea]"
+                : "text-[#94a3b8] border-[#2a3555] hover:border-[#9f7aea] hover:text-[#c4b5fd]"
             )}
             style={
               filters.category === value
-                ? { background: "linear-gradient(135deg, #7C3AED, #EC4899)" }
+                ? { background: "linear-gradient(135deg, #9f7aea, #818cf8)" }
                 : {}
             }
           >
@@ -56,10 +56,10 @@ export default function ResourceFilters({ filters, onFilterChange }: ResourceFil
             key={value}
             onClick={() => onFilterChange({ ...filters, location: value })}
             className={clsx(
-              "px-4 py-1.5 rounded-full text-sm font-medium border transition-[border-color,color,background] duration-150",
+              "px-4 py-1.5 rounded-xl text-sm font-medium border transition-[border-color,color,background] duration-150",
               filters.location === value
-                ? "bg-[#241840] text-[#34D399] border-[#34D399]"
-                : "text-[#9B8AC4] border-[#3D2B6B] hover:border-[#34D399] hover:text-[#34D399]"
+                ? "bg-[#0f1e18] text-[#34D399] border-[#34D399]"
+                : "text-[#94a3b8] border-[#2a3555] hover:border-[#34D399] hover:text-[#34D399]"
             )}
           >
             {label}

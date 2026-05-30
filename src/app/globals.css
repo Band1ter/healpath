@@ -2,19 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Manrope:wght@400;500;600&display=swap");
 
 :root {
   /* ── Color tokens ──────────────────────────────── */
-  --primary:       #7C3AED;
-  --primary-light: #A78BFA;
-  --accent:        #EC4899;
-  --bg:            #0F0A1E;
-  --surface:       #1A1030;
-  --surface2:      #241840;
-  --border:        #3D2B6B;
-  --text:          #F0EBF8;
-  --muted:         #9B8AC4;
+  --primary:       #9f7aea;
+  --primary-light: #c4b5fd;
+  --accent:        #818cf8;
+  --bg:            #0b1326;
+  --surface:       #131b2e;
+  --surface2:      #1c2640;
+  --border:        #2a3555;
+  --text:          #f1f5f9;
+  --muted:         #94a3b8;
   --crisis:        #FF4D6A;
   --safe:          #34D399;
 
@@ -40,7 +40,7 @@
 html, body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Manrope", system-ui, sans-serif;
 }
 
 .chat-scroll {
