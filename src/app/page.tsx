@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import BreathingExercise from "@/components/ui/BreathingExercise";
 
 export default function HomePage() {
   return (
@@ -23,11 +25,11 @@ export default function HomePage() {
           }}
         />
 
-        <p className="text-xs font-medium tracking-[0.2em] text-[#9f7aea] uppercase mb-5">
+        <p className="hero-in text-xs font-medium tracking-[0.2em] text-[#9f7aea] uppercase mb-5">
           A safe space to begin
         </p>
 
-        <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#f1f5f9] mb-5 leading-tight max-w-3xl mx-auto">
+        <h1 className="hero-in-2 font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#f1f5f9] mb-5 leading-tight max-w-3xl mx-auto">
           You are{" "}
           <span
             style={{
@@ -41,12 +43,12 @@ export default function HomePage() {
           </span>
         </h1>
 
-        <p className="text-[#94a3b8] text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="hero-in-3 text-[#94a3b8] text-lg max-w-xl mx-auto mb-10 leading-relaxed">
           HealPath is a safe, anonymous space to find support, share your story,
           and access free help — on your terms, at your pace.
         </p>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-16">
+        <div className="hero-in-4 flex flex-wrap gap-4 justify-center mb-16">
           <Link
             href="/chat"
             className="px-7 py-3.5 rounded-2xl text-white font-semibold text-sm shadow-lg card-lift"
@@ -63,7 +65,7 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        <ScrollReveal group className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
           {[
             { stat: "24/7", label: "Always available" },
             { stat: "100%", label: "Anonymous" },
@@ -72,7 +74,7 @@ export default function HomePage() {
           ].map(({ stat, label }) => (
             <div
               key={stat}
-              className="bg-[#131b2e] border border-[#2a3555] rounded-2xl px-4 py-5"
+              className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl px-4 py-5"
             >
               <p className="font-heading text-2xl font-semibold text-[#c4b5fd] mb-1">
                 {stat}
@@ -80,15 +82,62 @@ export default function HomePage() {
               <p className="text-[#94a3b8] text-xs">{label}</p>
             </div>
           ))}
+        </ScrollReveal>
+      </section>
+
+      {/* ── How HealPath works ─────────────────────────────────────── */}
+      <section className="px-4 py-14 bg-[#0b1326]">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal className="text-center mb-10">
+            <p className="text-xs font-medium tracking-[0.15em] text-[#9f7aea] uppercase mb-2">
+              How it works
+            </p>
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-[#f1f5f9]">
+              Three steps, entirely on your terms
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal group className="grid sm:grid-cols-3 gap-4">
+            {[
+              {
+                step: "1",
+                title: "Arrive safely",
+                body: "No account, no sign-up, no trace. The Quick Exit button and triple-Escape shortcut take you to a neutral page instantly.",
+              },
+              {
+                step: "2",
+                title: "Explore at your pace",
+                body: "Talk to Sage, read stories from others who understand, or browse resources privately. Nothing is required of you.",
+              },
+              {
+                step: "3",
+                title: "Reach out when ready",
+                body: "When it feels right, connect with a hotline, legal aid, shelter, or counselor. Every option is free or low-cost.",
+              },
+            ].map(({ step, title, body }) => (
+              <div
+                key={step}
+                className="reveal relative bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 pt-8"
+              >
+                <span
+                  className="absolute -top-4 left-6 w-8 h-8 rounded-xl flex items-center justify-center text-sm font-semibold text-white"
+                  style={{ background: "linear-gradient(135deg, #9f7aea, #818cf8)" }}
+                >
+                  {step}
+                </span>
+                <h3 className="font-heading font-semibold text-[#f1f5f9] mb-2">{title}</h3>
+                <p className="text-sm text-[#94a3b8] leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </ScrollReveal>
         </div>
       </section>
 
       {/* ── Three feature cards ────────────────────────────────────── */}
       <section className="px-4 py-12 bg-[#0b1326]">
-        <div className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-4">
+        <ScrollReveal group className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-4">
           <Link
             href="/chat"
-            className="bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#9f7aea] card-lift text-left group"
+            className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#9f7aea] card-lift text-left group"
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-[#1c2640]">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#c4b5fd" className="w-5 h-5">
@@ -101,7 +150,7 @@ export default function HomePage() {
 
           <Link
             href="/stories"
-            className="bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#818cf8] card-lift text-left group"
+            className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#818cf8] card-lift text-left group"
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-[#1c2640]">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#818cf8" className="w-5 h-5">
@@ -114,7 +163,7 @@ export default function HomePage() {
 
           <Link
             href="/resources"
-            className="bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#34D399] card-lift text-left group"
+            className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#34D399] card-lift text-left group"
           >
             <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-[#1c2640]">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#34D399" className="w-5 h-5">
@@ -125,7 +174,7 @@ export default function HomePage() {
             <h2 className="font-heading font-semibold text-[#f1f5f9] mb-1">Find Resources</h2>
             <p className="text-sm text-[#94a3b8]">Free legal, medical, and shelter help in NJ and NYC.</p>
           </Link>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── Sage AI Companion spotlight ───────────────────────────── */}
@@ -135,7 +184,7 @@ export default function HomePage() {
           <div className="shrink-0 flex items-center justify-center">
             <div className="relative w-28 h-28">
               <div
-                className="absolute inset-0 rounded-full opacity-30 blur-2xl"
+                className="absolute inset-0 rounded-full blur-2xl animate-breathe-glow"
                 style={{ background: "radial-gradient(circle, #9f7aea, #818cf8)" }}
               />
               <div
@@ -187,7 +236,7 @@ export default function HomePage() {
           <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-[#f1f5f9] text-center mb-8">
             Find the Help You Need
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <ScrollReveal group className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               {
                 label: "Medical",
@@ -241,7 +290,7 @@ export default function HomePage() {
               <Link
                 key={label}
                 href={href}
-                className="rounded-2xl p-5 border border-[#2a3555] hover:border-[#9f7aea] card-lift text-center flex flex-col items-center gap-2"
+                className="reveal rounded-2xl p-5 border border-[#2a3555] hover:border-[#9f7aea] card-lift text-center flex flex-col items-center gap-2"
                 style={{ background: bg }}
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#131b2e]">
@@ -251,7 +300,7 @@ export default function HomePage() {
                 <p className="text-xs text-[#94a3b8] leading-snug">{sub}</p>
               </Link>
             ))}
-          </div>
+          </ScrollReveal>
           <div className="text-center mt-6">
             <Link
               href="/resources"
@@ -273,7 +322,7 @@ export default function HomePage() {
             Strength in Shared Stories
           </h2>
         </div>
-        <div className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto mb-8">
+        <ScrollReveal group className="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto mb-8">
           {[
             {
               quote: "I didn't know what to call what was happening to me. Having a name for it gave me courage to ask for help.",
@@ -290,7 +339,7 @@ export default function HomePage() {
           ].map(({ quote, category }) => (
             <div
               key={category}
-              className="bg-[#1c2640] border border-[#2a3555] rounded-2xl p-6 flex flex-col gap-4"
+              className="reveal bg-[#1c2640] border border-[#2a3555] rounded-2xl p-6 flex flex-col gap-4"
             >
               {/* Stars */}
               <div className="flex gap-1">
@@ -308,7 +357,7 @@ export default function HomePage() {
               </p>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
         <div className="text-center">
           <Link
             href="/stories"
@@ -319,6 +368,21 @@ export default function HomePage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </Link>
+        </div>
+      </section>
+
+      {/* ── A moment to breathe ───────────────────────────────────── */}
+      <section className="px-4 py-16 bg-[#0b1326]">
+        <div className="max-w-2xl mx-auto text-center">
+          <ScrollReveal>
+            <p className="text-xs font-medium tracking-[0.15em] text-[#9f7aea] uppercase mb-2">
+              A moment for you
+            </p>
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-[#f1f5f9] mb-8">
+              Take a breath before you continue
+            </h2>
+            <BreathingExercise />
+          </ScrollReveal>
         </div>
       </section>
 

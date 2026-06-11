@@ -118,6 +118,60 @@ html, body {
   transform: translateY(-3px);
 }
 
+/* Scroll reveal — elements fade up as they enter the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger children inside a revealed group */
+.reveal-group .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-group .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-group .reveal:nth-child(4) { transition-delay: 240ms; }
+
+/* Hero entrance — runs once on load */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-in   { animation: heroIn 700ms var(--ease-out) both; }
+.hero-in-2 { animation: heroIn 700ms var(--ease-out) 120ms both; }
+.hero-in-3 { animation: heroIn 700ms var(--ease-out) 240ms both; }
+.hero-in-4 { animation: heroIn 700ms var(--ease-out) 360ms both; }
+
+/* Gentle breathing glow — for the Sage orb */
+@keyframes breatheGlow {
+  0%, 100% { transform: scale(1);    opacity: 0.25; }
+  50%      { transform: scale(1.12); opacity: 0.45; }
+}
+.animate-breathe-glow {
+  animation: breatheGlow 5s var(--ease-in-out) infinite;
+}
+
+/* Guided breathing circle — 4s in, 4s hold, 6s out */
+@keyframes guidedBreath {
+  0%       { transform: scale(0.7); }
+  28.5%    { transform: scale(1); }    /* 4s inhale */
+  57%      { transform: scale(1); }    /* 4s hold */
+  100%     { transform: scale(0.7); }  /* 6s exhale */
+}
+.animate-guided-breath {
+  animation: guidedBreath 14s var(--ease-in-out) infinite;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-in, .hero-in-2, .hero-in-3, .hero-in-4 { animation: none; }
+  .animate-breathe-glow, .animate-guided-breath { animation: none; }
+  .animate-scroll-up, .animate-scroll-up-reverse { animation-duration: 120s; }
+  .card-lift:hover { transform: none; }
+}
+
 /* Gradient utilities */
 .gradient-btn {
   background: linear-gradient(135deg, var(--primary), var(--accent));
