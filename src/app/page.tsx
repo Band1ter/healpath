@@ -1,21 +1,21 @@
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import BreathingExercise from "@/components/ui/BreathingExercise";
+import AmbientBackground from "@/components/ui/AmbientBackground";
+import CountUp from "@/components/ui/CountUp";
+import FeatureExplorer from "@/components/ui/FeatureExplorer";
+import TrustMarquee from "@/components/ui/TrustMarquee";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
+      {/* Page-wide floating ambient orbs with pointer parallax */}
+      <AmbientBackground />
 
       {/* ── Cinematic Hero ─────────────────────────────────────────── */}
       <section className="relative px-4 py-28 text-center overflow-hidden">
-        {/* Background: deep radial glow */}
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(159,122,234,0.18) 0%, rgba(11,19,38,0) 70%), #0b1326",
-          }}
-        />
+        {/* Animated drifting gradient mesh */}
+        <div className="gradient-mesh absolute inset-0 -z-10" />
         {/* Subtle noise texture overlay */}
         <div
           className="absolute inset-0 -z-10 opacity-[0.03]"
@@ -51,7 +51,7 @@ export default function HomePage() {
         <div className="hero-in-4 flex flex-wrap gap-4 justify-center mb-16">
           <Link
             href="/chat"
-            className="px-7 py-3.5 rounded-2xl text-white font-semibold text-sm shadow-lg card-lift"
+            className="glow-cta px-7 py-3.5 rounded-2xl text-white font-semibold text-sm tilt-hover"
             style={{ background: "linear-gradient(135deg, #9f7aea, #818cf8)" }}
           >
             Find Support Now
@@ -64,25 +64,33 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Stats */}
+        {/* Stats — count up on scroll */}
         <ScrollReveal group className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
           {[
-            { stat: "24/7", label: "Always available" },
-            { stat: "100%", label: "Anonymous" },
-            { stat: "32+", label: "Free resources" },
-            { stat: "AI", label: "Trauma-informed" },
-          ].map(({ stat, label }) => (
+            { node: <CountUp text="24/7" />, label: "Always available" },
+            { node: <CountUp value={100} suffix="%" />, label: "Anonymous" },
+            { node: <CountUp value={32} suffix="+" />, label: "Free resources" },
+            { node: <CountUp text="AI" />, label: "Trauma-informed" },
+          ].map(({ node, label }, i) => (
             <div
-              key={stat}
-              className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl px-4 py-5"
+              key={i}
+              className="reveal bg-[#131b2e]/80 backdrop-blur-sm border border-[#2a3555] rounded-2xl px-4 py-5"
             >
               <p className="font-heading text-2xl font-semibold text-[#c4b5fd] mb-1">
-                {stat}
+                {node}
               </p>
               <p className="text-[#94a3b8] text-xs">{label}</p>
             </div>
           ))}
         </ScrollReveal>
+
+        {/* Trust marquee */}
+        <div className="max-w-3xl mx-auto mt-14">
+          <p className="text-center text-[11px] font-medium tracking-[0.18em] text-[#64748b] uppercase mb-4">
+            Connecting you to trusted sources
+          </p>
+          <TrustMarquee />
+        </div>
       </section>
 
       {/* ── How HealPath works ─────────────────────────────────────── */}
@@ -116,7 +124,7 @@ export default function HomePage() {
             ].map(({ step, title, body }) => (
               <div
                 key={step}
-                className="reveal relative bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 pt-8"
+                className="reveal gradient-border tilt-hover relative border border-[#2a3555] p-6 pt-8"
               >
                 <span
                   className="absolute -top-4 left-6 w-8 h-8 rounded-xl flex items-center justify-center text-sm font-semibold text-white"
@@ -132,48 +140,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Three feature cards ────────────────────────────────────── */}
-      <section className="px-4 py-12 bg-[#0b1326]">
-        <ScrollReveal group className="max-w-4xl mx-auto grid sm:grid-cols-3 gap-4">
-          <Link
-            href="/chat"
-            className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#9f7aea] card-lift text-left group"
-          >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-[#1c2640]">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#c4b5fd" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
-              </svg>
-            </div>
-            <h2 className="font-heading font-semibold text-[#f1f5f9] mb-1">Talk to Sage</h2>
-            <p className="text-sm text-[#94a3b8]">A warm AI companion, available 24/7, no judgment.</p>
-          </Link>
-
-          <Link
-            href="/stories"
-            className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#818cf8] card-lift text-left group"
-          >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-[#1c2640]">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#818cf8" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
-              </svg>
-            </div>
-            <h2 className="font-heading font-semibold text-[#f1f5f9] mb-1">Community Stories</h2>
-            <p className="text-sm text-[#94a3b8]">Read from others. Share yours anonymously.</p>
-          </Link>
-
-          <Link
-            href="/resources"
-            className="reveal bg-[#131b2e] border border-[#2a3555] rounded-2xl p-6 hover:border-[#34D399] card-lift text-left group"
-          >
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 bg-[#1c2640]">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#34D399" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-              </svg>
-            </div>
-            <h2 className="font-heading font-semibold text-[#f1f5f9] mb-1">Find Resources</h2>
-            <p className="text-sm text-[#94a3b8]">Free legal, medical, and shelter help in NJ and NYC.</p>
-          </Link>
+      {/* ── Interactive feature explorer ───────────────────────────── */}
+      <section className="px-4 py-16 bg-[#0b1326]">
+        <ScrollReveal className="text-center mb-8">
+          <p className="text-xs font-medium tracking-[0.15em] text-[#9f7aea] uppercase mb-2">
+            What you&apos;ll find here
+          </p>
+          <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-[#f1f5f9]">
+            Everything HealPath offers, in one place
+          </h2>
+          <p className="text-[#94a3b8] text-sm mt-2">Tap a feature to learn more.</p>
+        </ScrollReveal>
+        <ScrollReveal>
+          <FeatureExplorer />
         </ScrollReveal>
       </section>
 
@@ -215,7 +194,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/chat"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white font-semibold text-sm card-lift"
+              className="glow-cta inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-white font-semibold text-sm tilt-hover"
               style={{ background: "linear-gradient(135deg, #9f7aea, #818cf8)" }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
@@ -290,10 +269,10 @@ export default function HomePage() {
               <Link
                 key={label}
                 href={href}
-                className="reveal rounded-2xl p-5 border border-[#2a3555] hover:border-[#9f7aea] card-lift text-center flex flex-col items-center gap-2"
+                className="reveal group rounded-2xl p-5 border border-[#2a3555] hover:border-[#9f7aea] tilt-hover text-center flex flex-col items-center gap-2"
                 style={{ background: bg }}
               >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#131b2e]">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#131b2e] transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                   {icon}
                 </div>
                 <p className="text-sm font-semibold" style={{ color }}>{label}</p>
@@ -304,7 +283,7 @@ export default function HomePage() {
           <div className="text-center mt-6">
             <Link
               href="/resources"
-              className="text-sm text-[#9f7aea] hover:text-[#c4b5fd] font-medium transition-colors duration-150"
+              className="link-shimmer text-sm text-[#9f7aea] hover:text-[#c4b5fd] font-medium"
             >
               View all 32+ resources →
             </Link>
@@ -339,7 +318,7 @@ export default function HomePage() {
           ].map(({ quote, category }) => (
             <div
               key={category}
-              className="reveal bg-[#1c2640] border border-[#2a3555] rounded-2xl p-6 flex flex-col gap-4"
+              className="reveal tilt-hover bg-[#1c2640] border border-[#2a3555] rounded-2xl p-6 flex flex-col gap-4"
             >
               {/* Stars */}
               <div className="flex gap-1">
@@ -395,7 +374,7 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-3 gap-3">
             <a
               href="tel:18007997233"
-              className="bg-[#131b2e] border border-[#2a3555] hover:border-[#9f7aea] rounded-2xl p-5 text-center card-lift"
+              className="bg-[#131b2e] border border-[#2a3555] hover:border-[#9f7aea] rounded-2xl p-5 text-center tilt-hover"
             >
               <div className="flex justify-center mb-3">
                 <div className="w-9 h-9 rounded-xl bg-[#1c2640] flex items-center justify-center">
@@ -412,7 +391,7 @@ export default function HomePage() {
               href="https://www.thehotline.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#131b2e] border border-[#2a3555] hover:border-[#9f7aea] rounded-2xl p-5 text-center card-lift"
+              className="bg-[#131b2e] border border-[#2a3555] hover:border-[#9f7aea] rounded-2xl p-5 text-center tilt-hover"
             >
               <div className="flex justify-center mb-3">
                 <div className="w-9 h-9 rounded-xl bg-[#1c2640] flex items-center justify-center">
@@ -429,7 +408,7 @@ export default function HomePage() {
               href="https://www.womenslaw.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#131b2e] border border-[#2a3555] hover:border-[#9f7aea] rounded-2xl p-5 text-center card-lift"
+              className="bg-[#131b2e] border border-[#2a3555] hover:border-[#9f7aea] rounded-2xl p-5 text-center tilt-hover"
             >
               <div className="flex justify-center mb-3">
                 <div className="w-9 h-9 rounded-xl bg-[#1c2640] flex items-center justify-center">
