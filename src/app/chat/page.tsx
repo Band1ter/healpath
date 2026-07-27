@@ -38,6 +38,17 @@ export default function ChatPage() {
   const [showInactivity, setShowInactivity] = useState(false);
   const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sessionCounted = useRef(false);
+  const [isDemo, setIsDemo] = useState(false);
+
+  // Ask the server whether Sage is in demo mode. Doing this at runtime (rather
+  // than via a NEXT_PUBLIC_ build-time variable) means the preview banner is
+  // always in sync with what the API actually does.
+  useEffect(() => {
+    fetch("/api/chat")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d && setIsDemo(Boolean(d.demo)))
+      .catch(() => {});
+  }, []);
 
   // Reset inactivity timer on any user activity
   const resetTimer = useCallback(() => {
@@ -99,7 +110,7 @@ export default function ChatPage() {
           const errData = await res.clone().json();
           if (errData?.error === "NO_API_KEY") {
             errorMsg =
-              "Sage isn't connected yet — the API key in .env.local is still a placeholder.\n\nTo activate Sage, open healpath/.env.local, replace 'your-api-key-here' with a real key from console.anthropic.com, then restart the server with npm run dev.";
+              "I'm so sorry — I can't respond right now.\n\nPlease know that support is still available any time: the National DV Hotline is 1-800-799-7233, or you can chat at thehotline.org. You can also text HOME to 741741.\n\nYou can try again in a little while, and I'll be here.";
           }
         } catch {
           // ignore parse errors
@@ -163,7 +174,7 @@ export default function ChatPage() {
             </p>
           </div>
 
-          {process.env.NEXT_PUBLIC_DEMO_MODE === "true" && (
+          {isDemo && (
             <div className="bg-[#1c2444] border border-[#9f7aea]/40 rounded-xl p-3 text-xs leading-relaxed">
               <p className="text-[#c4b5fd] font-semibold mb-1">Partner preview</p>
               <p className="text-[#94a3b8]">

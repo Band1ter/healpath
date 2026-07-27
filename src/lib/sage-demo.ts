@@ -99,6 +99,20 @@ export function streamDemoResponse(text: string): ReadableStream<Uint8Array> {
   });
 }
 
+/** True when the server has no usable Anthropic key. */
+export function hasNoApiKey(): boolean {
+  const key = process.env.ANTHROPIC_API_KEY?.trim();
+  // Treat empty, placeholder, or obviously-not-a-key values as absent.
+  return !key || !key.startsWith("sk-ant-");
+}
+
+/**
+ * Demo mode is the default whenever Sage has no usable API key — showing a
+ * scripted, trauma-informed reply is always better than showing an error to
+ * someone who reached out. Set DEMO_MODE=false to opt out and surface the
+ * NO_API_KEY error instead (useful while debugging a real key locally).
+ */
 export function isDemoMode(): boolean {
-  return process.env.DEMO_MODE === "true";
+  if (process.env.DEMO_MODE === "false") return false;
+  return hasNoApiKey();
 }

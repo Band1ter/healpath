@@ -1,8 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { anthropic, HEALPATH_SYSTEM_PROMPT } from "@/lib/claude";
-import { getDemoResponse, streamDemoResponse, isDemoMode } from "@/lib/sage-demo";
+import {
+  getDemoResponse,
+  streamDemoResponse,
+  isDemoMode,
+  hasNoApiKey,
+} from "@/lib/sage-demo";
 
 export const runtime = "nodejs";
+
+// GET /api/chat — lets the client ask whether Sage is running in demo mode,
+// so the preview banner works without a NEXT_PUBLIC_ build-time variable.
+export async function GET() {
+  return NextResponse.json(
+    { demo: isDemoMode() },
+    { headers: { "Cache-Control": "no-store" } }
+  );
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,8 +30,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Check for missing/placeholder API key before hitting Anthropic
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (!apiKey || apiKey === "your-api-key-here") {
+    if (hasNoApiKey()) {
       // Demo mode: stream a scripted, trauma-informed response so partners
       // can preview the full chat experience with no API key.
       if (isDemoMode()) {
