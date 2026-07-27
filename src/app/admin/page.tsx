@@ -2,6 +2,11 @@
 import { useState } from "react";
 import { Story } from "@/types/story";
 
+interface Metrics {
+  sessions: number;
+  messages: number;
+}
+
 const CATEGORY_LABELS: Record<Story["category"], string> = {
   "domestic-violence": "Domestic Violence",
   "sexual-assault": "Sexual Assault",
@@ -33,6 +38,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [authError, setAuthError] = useState("");
+  const [metrics, setMetrics] = useState<Metrics | null>(null);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -43,6 +49,11 @@ export default function AdminPage() {
       const data = await res.json();
       setStories(data);
       setAuthenticated(true);
+      // Load impact metrics (anonymous counters)
+      fetch("/api/metrics")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((m) => m && setMetrics(m))
+        .catch(() => {});
     } else {
       setAuthError("Could not load stories.");
     }
@@ -129,6 +140,34 @@ export default function AdminPage() {
           Sign out
         </button>
       </div>
+
+      {/* Impact metrics — anonymous aggregate counters */}
+      <div className="mb-8">
+        <h2 className="font-heading text-lg font-semibold text-[#F0EBF8] mb-1">
+          Impact
+        </h2>
+        <p className="text-xs text-[#9B8AC4] mb-3">
+          Anonymous totals since launch. No message content is ever stored.
+        </p>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-[#1A1030] border border-[#3D2B6B] rounded-2xl px-5 py-4">
+            <p className="font-heading text-3xl font-semibold text-[#A78BFA]">
+              {metrics ? metrics.sessions.toLocaleString() : "—"}
+            </p>
+            <p className="text-xs text-[#9B8AC4] mt-1">Chat sessions</p>
+          </div>
+          <div className="bg-[#1A1030] border border-[#3D2B6B] rounded-2xl px-5 py-4">
+            <p className="font-heading text-3xl font-semibold text-[#A78BFA]">
+              {metrics ? metrics.messages.toLocaleString() : "—"}
+            </p>
+            <p className="text-xs text-[#9B8AC4] mt-1">Messages to Sage</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 className="font-heading text-lg font-semibold text-[#F0EBF8] mb-3">
+        Story moderation
+      </h2>
 
       {stories.length === 0 ? (
         <p className="text-center text-[#9B8AC4] py-16">No stories to moderate.</p>

@@ -17,11 +17,27 @@ const INITIAL_MESSAGE: Message = {
 
 const INACTIVITY_MS = 3 * 60 * 1000; // 3 minutes
 
+// Fire-and-forget anonymous impact metric. Never blocks the chat, never
+// sends any message content — only the event name.
+function trackEvent(event: "session" | "message") {
+  try {
+    fetch("/api/metrics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    // ignore — metrics must never affect the user
+  }
+}
+
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [isLoading, setIsLoading] = useState(false);
   const [showInactivity, setShowInactivity] = useState(false);
   const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sessionCounted = useRef(false);
 
   // Reset inactivity timer on any user activity
   const resetTimer = useCallback(() => {
@@ -47,6 +63,15 @@ export default function ChatPage() {
 
   async function handleSend(text: string) {
     resetTimer();
+
+    // Anonymous impact tracking: count the session once (first real message),
+    // and count every message the person sends. No content is transmitted.
+    if (!sessionCounted.current) {
+      sessionCounted.current = true;
+      trackEvent("session");
+    }
+    trackEvent("message");
+
     const userMessage: Message = { role: "user", content: text };
     const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
@@ -137,6 +162,17 @@ export default function ChatPage() {
               Sage is here to listen without judgment. Share as much or as little as you&apos;re comfortable with.
             </p>
           </div>
+
+          {process.env.NEXT_PUBLIC_DEMO_MODE === "true" && (
+            <div className="bg-[#1c2444] border border-[#9f7aea]/40 rounded-xl p-3 text-xs leading-relaxed">
+              <p className="text-[#c4b5fd] font-semibold mb-1">Partner preview</p>
+              <p className="text-[#94a3b8]">
+                Sage&apos;s responses are simulated in this demo. The live version
+                will be powered by a trauma-informed AI with the same voice and
+                safety guidelines.
+              </p>
+            </div>
+          )}
 
           <div className="bg-[#1c2640] rounded-xl p-3 text-xs text-[#94a3b8] leading-relaxed border border-[#2a3555]">
             This chat is not saved anywhere. Close the tab to erase it completely.

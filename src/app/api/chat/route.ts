@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { anthropic, HEALPATH_SYSTEM_PROMPT } from "@/lib/claude";
+import { getDemoResponse, streamDemoResponse, isDemoMode } from "@/lib/sage-demo";
 
 export const runtime = "nodejs";
 
@@ -17,6 +18,20 @@ export async function POST(req: NextRequest) {
     // Check for missing/placeholder API key before hitting Anthropic
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey || apiKey === "your-api-key-here") {
+      // Demo mode: stream a scripted, trauma-informed response so partners
+      // can preview the full chat experience with no API key.
+      if (isDemoMode()) {
+        const lastUser = [...messages]
+          .reverse()
+          .find((m: { role: string }) => m.role === "user");
+        const demoText = getDemoResponse(lastUser?.content ?? "");
+        return new Response(streamDemoResponse(demoText), {
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+            "Cache-Control": "no-cache",
+          },
+        });
+      }
       return NextResponse.json(
         { error: "NO_API_KEY" },
         { status: 503 }
