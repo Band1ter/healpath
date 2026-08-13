@@ -3,7 +3,7 @@ import { Resource } from "@/types/resource";
 const CATEGORY_LABELS: Record<Resource["category"], string> = {
   hotline: "Hotline",
   legal: "Legal Aid",
-  medical: "Medical / SANE",
+  medical: "Medical / FNE / SANE",
   shelter: "Shelter",
 };
 

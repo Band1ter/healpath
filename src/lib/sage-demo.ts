@@ -16,15 +16,65 @@ interface DemoRule {
 }
 
 const DEMO_RULES: DemoRule[] = [
+  // ── Risk rules come FIRST so they win over greetings and general rules. ──
+  // A 2025 review by NJCASA found the earlier ordering let "I'd be better off
+  // dead" and "what if I hurt him back" fall through to generic replies.
+  {
+    keywords: [
+      "better off dead", "want to die", "kill myself", "hurt myself", "suicide",
+      "end it", "end my life", "don't want to be here", "dont want to be here",
+      "no point", "better off without me", "want it to stop", "cant do this anymore",
+      "can't do this anymore", "harm myself", "not worth living",
+    ],
+    response:
+      "I want to stop and stay with what you just said, because it matters more than anything else right now.\n\nIt sounds like you're thinking about not being here anymore. I'm really glad you told me that, and I'm not going anywhere.\n\nPlease reach out to the 988 Suicide & Crisis Lifeline. You can call or text 988, any time, and texting is there if talking out loud feels like too much. They are people who will listen without judgment.\n\nI want to be honest with you: I can't reach anyone for you, and I can't stay with you the way a person can. That's exactly why I want you to have someone real.\n\nHow long have you been carrying this feeling?",
+  },
+  {
+    keywords: [
+      "hurt him back", "hurt her back", "break his legs", "break her legs",
+      "want him dead", "want her dead", "kill him", "kill her", "hurt him",
+      "hurt her", "get back at", "make him pay", "revenge",
+    ],
+    response:
+      "I'm not going to brush past that, and I'm not going to judge you for it.\n\nAnger at someone who hurt you makes complete sense. Wanting them to feel something of what you've felt is a human response, and having the thought is not the same as being a person who would do it. You're allowed to say it out loud here.\n\nWhat I do want to say, because I care what happens to you: acting on it could put you in real danger, legally and physically, and it could be used against you later in ways that aren't fair. I'd hate to see you carry that on top of everything else.\n\nUsually underneath a feeling like this is something more like powerlessness. Does that fit? What's been happening?",
+  },
+  {
+    keywords: [
+      "strangled", "strangle", "choked", "choking", "hands around my neck",
+      "threatened to kill", "has a gun", "owns a gun", "gun in the house",
+    ],
+    response:
+      "Thank you for telling me. I want to take that seriously with you.\n\nIf you were strangled or choked, even once, even if it seemed minor at the time, please consider getting seen by a doctor. Injuries from that are often internal and don't always show or hurt right away. You can be seen without making any report.\n\nI also want to gently say that what you're describing is the kind of thing advocates take very seriously. Not to frighten you. It's that talking with a person tonight, rather than someday, could be worth a lot. The National DV Hotline at 1-800-799-7233 has advocates 24/7, and you can chat at thehotline.org instead of calling.\n\nI'm here. What's been going on?",
+  },
+  {
+    keywords: [
+      "my daughter", "my son", "my child", "my kid", "my friend", "my sister",
+      "my brother", "my student", "someone i know", "how do i help", "help them",
+      "told me that she", "told me that he", "disclosed",
+    ],
+    response:
+      "It says a lot about you that you're trying to figure out how to do this well.\n\nBefore anything else: this is heavy to carry, and being the person someone told is its own kind of hard. How are you holding up?\n\nWhat helps most is usually simpler than people expect. Believe them. Thank them for telling you. Don't press for details they haven't offered, and try not to let them see panic or anger, even though you feel it, because people often go quiet to protect the person they told. Let them set the pace, and keep showing up.\n\nIf a child may be involved, New Jersey's State Central Registry at 1-877-NJ-ABUSE (1-877-652-2873) is staffed 24 hours a day and anyone can call. You don't need proof to call and ask what to do. Some adults, like teachers and doctors, are legally required to report, so a school will likely have its own obligation once told.\n\nThe hotlines support people in your position too, not only survivors. You're allowed to call just to figure out how to help.",
+  },
+  {
+    keywords: [
+      "forensic exam", "rape kit", "sane", "fne", "evidence", "hospital",
+      "should i report", "report it", "sart", "police report",
+    ],
+    response:
+      "I can walk you through what this actually involves, and none of it commits you to anything.\n\nIn New Jersey the exam is done by a Forensic Nurse Examiner, sometimes called a SANE. A few things people often don't know: it's free, and you do NOT have to report to police to have one. It's available in every county, for any age.\n\nIt's also medical care, not only evidence. It covers treatment for injuries, prevention of sexually transmitted infections, and emergency contraception.\n\nYou can decline any part of it, and stop at any point. Consent is ongoing the whole way through.\n\nNew Jersey also allows anonymous reporting, sometimes called Jane Doe, where evidence can be collected while you take your time deciding about police. That keeps the option open without committing you.\n\nEvidence is best collected within about five days, though care and support are there after that too. You can ask for a confidential advocate at any point, including before you decide anything. They work only for you.\n\nWhat would be most useful to know more about?",
+  },
+  {
+    keywords: [
+      "don't remember", "dont remember", "can't remember", "cant remember",
+      "blacked out", "was drinking", "drugged", "woke up", "not sure what happened",
+    ],
+    response:
+      "Not remembering doesn't mean nothing happened, and it doesn't mean you won't be believed.\n\nGaps like that are a common effect of trauma, and of alcohol or drugs. Your mind not holding onto it is something that happens to people, not a sign that you're unreliable or that you have to be certain before you deserve support.\n\nYou don't need to have the full picture to talk about it, and you don't need to be sure to get care. If you want, I can tell you what a forensic exam involves, or we can just stay with how you're feeling about it. Whichever is more useful.\n\nWhat's today been like for you?",
+  },
   {
     keywords: ["911", "emergency", "right now", "danger", "he's here", "she's here", "unsafe now"],
     response:
       "I'm right here with you.\n\nIf you are in immediate danger, please call 911 if you can, or get to somewhere safe — a neighbor, a public place, anywhere you feel safer. You matter, and your safety comes first.\n\nIf calling isn't possible, you can text HOME to 741741 to reach a crisis counselor quietly.\n\nI'm not going anywhere. When you're safe, I'm here to keep talking.",
-  },
-  {
-    keywords: ["hurt myself", "suicide", "kill myself", "end it", "don't want to be here"],
-    response:
-      "I'm so glad you told me that. What you're carrying sounds incredibly heavy, and you don't have to carry it alone.\n\nPlease reach out to the 988 Suicide & Crisis Lifeline — you can call or text 988 any time, day or night. They truly care and they will listen.\n\nYou reached out here, and that took courage. That part of you that reached out matters. I'm here with you.",
   },
   {
     keywords: ["restraining order", "legal", "lawyer", "court", "custody", "tro", "rights"],
@@ -51,6 +101,9 @@ const DEMO_RULES: DemoRule[] = [
     response:
       "I'm glad you asked — and there are more ways to reach out than most people realize. Calling is just one option:\n\nThe National DV Hotline (thehotline.org) lets you call, text, or chat online 24/7 — the chat option is there if talking out loud feels like too much right now.\n\nRAINN (rainn.org) supports survivors of sexual assault, free and confidential.\n\nWomensLaw.org lets you read about legal options privately, without talking to anyone.\n\nAnd the Find Help page here lists free local support in NJ and NYC — legal, medical, shelter, and counseling.\n\nWhichever door feels safest to you is the right one. There's no wrong way to start.",
   },
+  // Greeting is LAST: it only applies when nothing substantive matched, and
+  // its keywords are matched as whole words (see getDemoResponse) so that
+  // "break his legs" can never be read as "hi".
   {
     keywords: ["hi", "hello", "hey", "test"],
     response:
@@ -66,12 +119,26 @@ const DEMO_FALLBACKS: string[] = [
 
 let fallbackIndex = 0;
 
-/** Pick a scripted demo response based on simple keyword matching. */
+/** Escape a string for safe use inside a RegExp. */
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Match a keyword on word boundaries rather than as a bare substring.
+ * Substring matching previously let "hi" match inside "break his legs" and
+ * "test" match inside "greatest", routing risk messages to a greeting.
+ */
+function matches(text: string, keyword: string): boolean {
+  return new RegExp(`\\b${escapeRegex(keyword)}\\b`).test(text);
+}
+
+/** Pick a scripted demo response. Rules are ordered risk-first. */
 export function getDemoResponse(userMessage: string): string {
   const text = userMessage.toLowerCase();
 
   for (const rule of DEMO_RULES) {
-    if (rule.keywords.some((k) => text.includes(k))) {
+    if (rule.keywords.some((k) => matches(text, k))) {
       return rule.response;
     }
   }

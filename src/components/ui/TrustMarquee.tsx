@@ -13,21 +13,21 @@ const SOURCES = [
   "988 Lifeline",
 ];
 
+// Rendered as a static, wrapping list rather than a scrolling marquee.
+// Auto-moving content is a WCAG 2.2.2 concern and was flagged in review as
+// distracting; for readers who may be in distress, stillness is kinder.
 export default function TrustMarquee() {
-  const items = [...SOURCES, ...SOURCES];
   return (
-    <div className="marquee-mask marquee-pause overflow-hidden">
-      <div className="animate-marquee flex w-max gap-3">
-        {items.map((name, i) => (
-          <span
-            key={i}
-            className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl bg-[#131b2e] border border-[#2a3555] text-sm text-[#94a3b8] whitespace-nowrap"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#9f7aea]" />
-            {name}
-          </span>
-        ))}
-      </div>
-    </div>
+    <ul className="flex flex-wrap justify-center gap-2.5 list-none p-0 m-0">
+      {SOURCES.map((name) => (
+        <li
+          key={name}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#131b2e] border border-[#2a3555] text-sm text-[#94a3b8]"
+        >
+          <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-[#9f7aea]" />
+          {name}
+        </li>
+      ))}
+    </ul>
   );
 }

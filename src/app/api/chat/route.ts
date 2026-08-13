@@ -52,9 +52,18 @@ export async function POST(req: NextRequest) {
     }
 
     const stream = anthropic.messages.stream({
-      model: process.env.CLAUDE_MODEL ?? "claude-sonnet-4-6",
+      model: process.env.CLAUDE_MODEL ?? "claude-sonnet-5",
       max_tokens: 1024,
-      system: HEALPATH_SYSTEM_PROMPT,
+      // Sage's system prompt is ~5k tokens and identical on every request.
+      // Caching it drops the cost of each follow-up message to a fraction of
+      // the base rate, which roughly halves the bill for a real conversation.
+      system: [
+        {
+          type: "text",
+          text: HEALPATH_SYSTEM_PROMPT,
+          cache_control: { type: "ephemeral" },
+        },
+      ],
       messages: messages.map(
         (m: { role: string; content: string }) => ({
           role: m.role as "user" | "assistant",

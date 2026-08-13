@@ -219,7 +219,7 @@ export default function HomePage() {
             {[
               {
                 label: "Medical",
-                sub: "SANE exams, clinics, care",
+                sub: "FNE/SANE exams, clinics, care",
                 color: "#60a5fa",
                 bg: "#0f1e2e",
                 icon: (

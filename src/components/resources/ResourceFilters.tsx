@@ -15,7 +15,7 @@ const CATEGORIES = [
   { value: "all", label: "All" },
   { value: "hotline", label: "Hotlines" },
   { value: "legal", label: "Legal Aid" },
-  { value: "medical", label: "Medical / SANE" },
+  { value: "medical", label: "Medical / FNE / SANE" },
   { value: "shelter", label: "Shelter" },
 ];
 

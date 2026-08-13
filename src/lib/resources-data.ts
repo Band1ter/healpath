@@ -486,9 +486,9 @@ export const resources: Resource[] = [
   // ─── NJ MEDICAL ─────────────────────────────────────────────────────────
   {
     id: "nj-sane-programs",
-    name: "NJ SANE Programs (Statewide)",
+    name: "NJ Forensic Nurse Examiner (FNE/SANE) Programs (Statewide)",
     description:
-      "New Jersey has SANE (Sexual Assault Nurse Examiner) programs available through hospital emergency departments across the state. Contact NJCASA to find your nearest program. Evidence can be preserved even if you are unsure about reporting.",
+      "New Jersey provides Forensic Nurse Examiner (FNE) services, also called SANE, in every county for survivors of any age. The exam is free, and you do not need to report to police to have one. It includes treatment for injuries, STI prevention, and emergency contraception. You can decline any part of it at any time, and evidence can be collected anonymously while you decide about reporting.",
     category: "medical",
     location: "nj",
     phone: "(609) 631-4450",
