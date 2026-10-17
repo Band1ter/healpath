@@ -34,7 +34,6 @@
   /* ── Spacing scale (multiples of 4px) ─────────── */
 
   /* ── Story wall ────────────────────────────────── */
-  --scroll-duration: 30s;
 }
 
 html, body {
@@ -50,30 +49,6 @@ html, body {
 *:focus-visible {
   outline: 2px solid var(--primary-light);
   outline-offset: 2px;
-}
-
-/* Story wall scroll animations */
-@keyframes scrollUp {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-
-@keyframes scrollDown {
-  0% { transform: translateY(-50%); }
-  100% { transform: translateY(0); }
-}
-
-.animate-scroll-up {
-  animation: scrollUp var(--scroll-duration, 30s) linear infinite;
-}
-
-.animate-scroll-up-reverse {
-  animation: scrollDown var(--scroll-duration, 30s) linear infinite;
-}
-
-.story-wall-paused .animate-scroll-up,
-.story-wall-paused .animate-scroll-up-reverse {
-  animation-play-state: paused;
 }
 
 /* Modal entrance animation */
@@ -168,7 +143,6 @@ html, body {
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero-in, .hero-in-2, .hero-in-3, .hero-in-4 { animation: none; }
   .animate-breathe-glow, .animate-guided-breath { animation: none; }
-  .animate-scroll-up, .animate-scroll-up-reverse { animation-duration: 120s; }
   .card-lift:hover { transform: none; }
 }
 

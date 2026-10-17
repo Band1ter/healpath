@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Story } from "@/types/story";
 import { clsx } from "clsx";
 
@@ -36,60 +36,39 @@ function timeAgo(iso: string): string {
   return `${days}d ago`;
 }
 
-// A single scrolling column
-function StoryColumn({
-  stories,
-  duration,
-  reverse,
+function StoryCard({
+  story,
   onSelect,
 }: {
-  stories: Story[];
-  duration: number;
-  reverse: boolean;
+  story: Story;
   onSelect: (s: Story) => void;
 }) {
-  // Duplicate for seamless loop
-  const doubled = [...stories, ...stories];
-
   return (
-    <div className="flex flex-col gap-3 overflow-hidden relative" style={{ height: "100%" }}>
-      <div
-        className={clsx(
-          "flex flex-col gap-3",
-          reverse ? "animate-scroll-up-reverse" : "animate-scroll-up"
-        )}
-        style={{ "--scroll-duration": `${duration}s` } as React.CSSProperties}
-      >
-        {doubled.map((story, i) => (
-          <button
-            key={`${story.id}-${i}`}
-            onClick={() => onSelect(story)}
-            className={clsx(
-              "text-left rounded-2xl border p-4 card-lift cursor-pointer active:scale-[0.98]",
-              CATEGORY_COLORS[story.category]
-            )}
-          >
-            {story.title && (
-              <p className="font-heading font-semibold text-[#f1f5f9] text-sm mb-1 line-clamp-1">
-                {story.title}
-              </p>
-            )}
-            <p className="text-[#94a3b8] text-xs leading-relaxed line-clamp-4">
-              {story.body}
-            </p>
-            <div className="mt-2 flex items-center justify-between">
-              <span
-                className="text-xs px-2 py-0.5 rounded-full font-medium"
-                style={{ background: CATEGORY_BADGE[story.category].bg, color: CATEGORY_BADGE[story.category].color }}
-              >
-                {CATEGORY_LABELS[story.category]}
-              </span>
-              <span className="text-xs text-[#94a3b8]">{timeAgo(story.timestamp)}</span>
-            </div>
-          </button>
-        ))}
+    <button
+      onClick={() => onSelect(story)}
+      className={clsx(
+        "w-full h-full text-left rounded-2xl border p-4 card-lift cursor-pointer active:scale-[0.98]",
+        CATEGORY_COLORS[story.category]
+      )}
+    >
+      {story.title && (
+        <p className="font-heading font-semibold text-[#f1f5f9] text-sm mb-1 line-clamp-1">
+          {story.title}
+        </p>
+      )}
+      <p className="text-[#94a3b8] text-xs leading-relaxed line-clamp-4">
+        {story.body}
+      </p>
+      <div className="mt-2 flex items-center justify-between">
+        <span
+          className="text-xs px-2 py-0.5 rounded-full font-medium"
+          style={{ background: CATEGORY_BADGE[story.category].bg, color: CATEGORY_BADGE[story.category].color }}
+        >
+          {CATEGORY_LABELS[story.category]}
+        </span>
+        <span className="text-xs text-[#94a3b8]">{timeAgo(story.timestamp)}</span>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -175,30 +154,15 @@ export default function StoryWall({ stories }: StoryWallProps) {
     );
   }
 
-  // Split stories into 3 columns (cycle through)
-  const col1 = stories.filter((_, i) => i % 3 === 0);
-  const col2 = stories.filter((_, i) => i % 3 === 1);
-  const col3 = stories.filter((_, i) => i % 3 === 2);
-
-  // Pad short columns with items from others so animation looks full
-  const pad = (arr: Story[], fallback: Story[]) =>
-    arr.length >= 2 ? arr : [...arr, ...fallback.slice(0, 2)];
-
   return (
     <>
-      <div className="relative overflow-hidden" style={{ height: "520px" }}>
-        {/* Fade masks top and bottom */}
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0b1326] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0b1326] to-transparent z-10 pointer-events-none" />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 h-full px-1">
-          <StoryColumn stories={pad(col1, stories)} duration={28} reverse={false} onSelect={setSelected} />
-          <StoryColumn stories={pad(col2, stories)} duration={34} reverse={true} onSelect={setSelected} />
-          <div className="hidden lg:block">
-            <StoryColumn stories={pad(col3, stories)} duration={24} reverse={false} onSelect={setSelected} />
-          </div>
-        </div>
-      </div>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 m-0">
+        {stories.map((story) => (
+          <li key={story.id}>
+            <StoryCard story={story} onSelect={setSelected} />
+          </li>
+        ))}
+      </ul>
 
       {selected && (
         <StoryModal story={selected} onClose={() => setSelected(null)} />

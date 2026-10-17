@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Story } from "@/types/story";
 import StoryForm from "@/components/stories/StoryForm";
 import StoryWall from "@/components/stories/StoryWall";
@@ -7,8 +7,6 @@ import StoryWall from "@/components/stories/StoryWall";
 export default function StoriesPage() {
   const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
-  const [paused, setPaused] = useState(false);
-  const wallRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/api/stories")
@@ -46,14 +44,7 @@ export default function StoriesPage() {
           ))}
         </div>
       ) : (
-        <div
-          ref={wallRef}
-          className={paused ? "story-wall-paused" : ""}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <StoryWall stories={stories} />
-        </div>
+        <StoryWall stories={stories} />
       )}
 
       <div className="flex items-center gap-4 my-10">
